@@ -12,6 +12,6 @@ namespace DataAbstraction.Models
 
         public string Category { get; set; } = "Other";
         public decimal Price { get; set; }
-        public string Description { get; set; } = string.Empty;
+        public string Description { get; set; } = "Description not set";
     }
 }
