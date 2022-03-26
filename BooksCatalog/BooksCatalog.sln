@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksCatalog", "BooksCatalog\BooksCatalog.csproj", "{708BAE37-BCC3-49F3-BA65-1F71B9699E06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksCatalog", "BooksCatalog\BooksCatalog.csproj", "{708BAE37-BCC3-49F3-BA65-1F71B9699E06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAbstraction", "DataAbstraction\DataAbstraction.csproj", "{9A20A9BF-8DA6-4703-A045-829024286708}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BooksRepositoryMongo", "BooksRepositoryMongo\BooksRepositoryMongo.csproj", "{19A282BA-2F47-433E-B7B8-DAD57124CC53}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{708BAE37-BCC3-49F3-BA65-1F71B9699E06}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{708BAE37-BCC3-49F3-BA65-1F71B9699E06}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{708BAE37-BCC3-49F3-BA65-1F71B9699E06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A20A9BF-8DA6-4703-A045-829024286708}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A20A9BF-8DA6-4703-A045-829024286708}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A20A9BF-8DA6-4703-A045-829024286708}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A20A9BF-8DA6-4703-A045-829024286708}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19A282BA-2F47-433E-B7B8-DAD57124CC53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19A282BA-2F47-433E-B7B8-DAD57124CC53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19A282BA-2F47-433E-B7B8-DAD57124CC53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19A282BA-2F47-433E-B7B8-DAD57124CC53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
