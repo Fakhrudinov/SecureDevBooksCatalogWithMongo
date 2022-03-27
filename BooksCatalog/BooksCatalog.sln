@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksRepositoryMongo", "Boo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataValidationService", "DataValidationService\DataValidationService.csproj", "{3688F6D8-0FDE-4AF4-9ECF-6C37C3023674}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookObjectsGenerator", "BookObjectsGenerator\BookObjectsGenerator.csproj", "{9EE53FC8-6C63-4942-B2E2-8AB713C49960}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{3688F6D8-0FDE-4AF4-9ECF-6C37C3023674}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3688F6D8-0FDE-4AF4-9ECF-6C37C3023674}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3688F6D8-0FDE-4AF4-9ECF-6C37C3023674}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EE53FC8-6C63-4942-B2E2-8AB713C49960}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EE53FC8-6C63-4942-B2E2-8AB713C49960}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EE53FC8-6C63-4942-B2E2-8AB713C49960}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EE53FC8-6C63-4942-B2E2-8AB713C49960}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

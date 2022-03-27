@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BookObjectsGenerator\BookObjectsGenerator.csproj" />
     <ProjectReference Include="..\BooksRepositoryMongo\BooksRepositoryMongo.csproj" />
     <ProjectReference Include="..\DataAbstraction\DataAbstraction.csproj" />
     <ProjectReference Include="..\DataValidationService\DataValidationService.csproj" />

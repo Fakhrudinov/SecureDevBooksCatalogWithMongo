@@ -1,4 +1,5 @@
-﻿using DataAbstraction.Interfaces;
+﻿using BookObjectsGenerator;
+using DataAbstraction.Interfaces;
 using DataAbstraction.Models;
 using DataValidationService;
 using FluentValidation.Results;
@@ -14,6 +15,21 @@ namespace BooksCatalog.Controllers
         public BooksController(IBooksRepository repository)
         {
             _repository = repository;
+        }
+
+        [HttpPost("Create/NewBooks/{count}")]
+        public async Task<ActionResult<IEnumerable<Book>>> GetNewBooks(int count)
+        {
+            Book[] books = BookGenerator.GetNewBooksArray(count);
+
+            foreach (Book book in books)
+            {
+                await _repository.CreateAsync(book);
+                Book findId = (Book)CreatedAtAction(nameof(Get), new { id = book.Id }, book).Value;
+                book.Id = findId.Id;
+            }
+
+            return books;
         }
 
 
@@ -36,7 +52,6 @@ namespace BooksCatalog.Controllers
 
             return book;
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Post(BookRequest newBook)
