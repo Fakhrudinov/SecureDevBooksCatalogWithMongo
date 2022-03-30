@@ -12,9 +12,11 @@ namespace BooksCatalog.Controllers
     public class BooksController : ControllerBase
     {
         private IBooksRepository _repository;
-        public BooksController(IBooksRepository repository)
+        private IElasticSearchService _elasticService;
+        public BooksController(IBooksRepository repository, IElasticSearchService elasticService)
         {
             _repository = repository;
+            _elasticService = elasticService;
         }
 
         [HttpPost("Create/NewBooks/{count}")]
@@ -29,7 +31,9 @@ namespace BooksCatalog.Controllers
                 book.Id = findId.Id;
             }
 
-            return books;
+            await _elasticService.IndexManyBooksAsync(books);
+
+            return Ok(books);
         }
 
 
@@ -70,7 +74,12 @@ namespace BooksCatalog.Controllers
             Book book = MapClassBookRequest(newBook);
 
             await _repository.CreateAsync(book);
-            return CreatedAtAction(nameof(Get), new { id = book.Id }, book);
+            Book findId = (Book)CreatedAtAction(nameof(Get), new { id = book.Id }, book).Value;
+            book.Id = findId.Id;
+
+            await _elasticService.IndexBookAsync(book);
+
+            return Ok(book);
         }
 
 
@@ -99,10 +108,12 @@ namespace BooksCatalog.Controllers
 
             Book updateBook = MapClassBookRequest(newData);
             updateBook.Id = book.Id;
-
+            
             await _repository.UpdateAsync(id, updateBook);
 
-            return NoContent();
+            await _elasticService.UpdateBookAsync(id, updateBook);
+
+            return Ok(updateBook);
         }
 
         [HttpDelete("{id:length(24)}")]
@@ -120,7 +131,9 @@ namespace BooksCatalog.Controllers
 
             await _repository.RemoveAsync(id);
 
-            return NoContent();
+            await _elasticService.DeleteBookByIndexAsync(id);
+
+            return Ok();
         }
 
 

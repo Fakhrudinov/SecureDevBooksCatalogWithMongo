@@ -22,6 +22,12 @@ builder.Services.Configure<BooksDataBaseConnection>(
 // Mongo repository 
 builder.Services.AddTransient<IBooksRepository, BooksRepository>();
 
+// connection to ElasticSearch
+builder.Services.Configure<ElasticSearchConnection>(
+    builder.Configuration.GetSection("ElasticSearch"));
+// elastic service
+builder.Services.AddSingleton<IElasticSearchService, ElasticSearchService.ElasticSearchService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
