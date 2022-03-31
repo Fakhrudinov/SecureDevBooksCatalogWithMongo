@@ -13,15 +13,19 @@ namespace BooksCatalog.Controllers
     {
         private IBooksRepository _repository;
         private IElasticSearchService _elasticService;
-        public BooksController(IBooksRepository repository, IElasticSearchService elasticService)
+        private ILogger<BooksController> _logger;
+
+        public BooksController(IBooksRepository repository, IElasticSearchService elasticService, ILogger<BooksController> logger)
         {
             _repository = repository;
             _elasticService = elasticService;
+            _logger = logger;
         }
 
         [HttpPost("Create/NewBooks/{count}")]
         public async Task<ActionResult<IEnumerable<Book>>> GetNewBooks(int count)
         {
+            _logger.LogInformation($"BooksController GetNewBooks executed at {DateTime.UtcNow} with count={count}");
             Book[] books = BookGenerator.GetNewBooksArray(count);
 
             foreach (Book book in books)
@@ -38,16 +42,22 @@ namespace BooksCatalog.Controllers
 
 
         [HttpGet]
-        public async Task<List<Book>> Get() => await _repository.GetAsync();
+        public async Task<List<Book>> Get()
+        {
+            _logger.LogInformation($"BooksController Get executed at {DateTime.UtcNow}");
+            return await _repository.GetAsync();
+        } 
 
 
         [HttpGet("{id:length(24)}")]
         public async Task<ActionResult<Book>> Get(string id)
         {
+            _logger.LogInformation($"BooksController Get by id executed at {DateTime.UtcNow} with id={id}");
             var book = await _repository.GetAsync(id);
 
             if (book is null)
             {
+                _logger.LogWarning($"BooksController Get by id={id} response 404");
                 var response = new ValidationResponseModel();
                 response.IsValid = false;
                 response.ValidationMessages.Add($"F_200.1 Указанный Id не найден");
@@ -60,12 +70,14 @@ namespace BooksCatalog.Controllers
         [HttpPost]
         public async Task<IActionResult> Post(BookRequest newBook)
         {
+            _logger.LogInformation($"BooksController Post executed at {DateTime.UtcNow}");
             BookRequestValidation validator = new BookRequestValidation();
             var response = new ValidationResponseModel();
 
             var validationResult = validator.Validate(newBook);
             if (!validationResult.IsValid)
             {
+                _logger.LogWarning($"BooksController Post validation fail.");
                 response = SetResponseFromValidationResult(validationResult, response);
 
                 return BadRequest(response);
@@ -86,12 +98,14 @@ namespace BooksCatalog.Controllers
         [HttpPut("{id:length(24)}")]
         public async Task<IActionResult> Update(string id, BookRequest newData)
         {
+            _logger.LogInformation($"BooksController Update executed at {DateTime.UtcNow} with id={id}");
             BookRequestValidation validator = new BookRequestValidation();
             var response = new ValidationResponseModel();
 
             var validationResult = validator.Validate(newData);
             if (!validationResult.IsValid)
             {
+                _logger.LogWarning($"BooksController Update validation fail.");
                 response = SetResponseFromValidationResult(validationResult, response);
 
                 return BadRequest(response);
@@ -101,6 +115,7 @@ namespace BooksCatalog.Controllers
 
             if (book is null)
             {
+                _logger.LogWarning($"BooksController Update by id={id} response 404");
                 response.IsValid = false;
                 response.ValidationMessages.Add($"F_200.2 Указанный Id не найден");
                 return NotFound(response);
@@ -119,10 +134,12 @@ namespace BooksCatalog.Controllers
         [HttpDelete("{id:length(24)}")]
         public async Task<IActionResult> Delete(string id)
         {
+            _logger.LogInformation($"BooksController Delete executed at {DateTime.UtcNow} with id={id}");
             var book = await _repository.GetAsync(id);
 
             if (book is null)
             {
+                _logger.LogWarning($"BooksController Delete by id={id} response 404");
                 var response = new ValidationResponseModel();
                 response.IsValid = false;
                 response.ValidationMessages.Add($"F_200.3 Указанный Id не найден");
