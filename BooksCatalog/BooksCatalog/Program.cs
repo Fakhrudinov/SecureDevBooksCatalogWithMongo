@@ -23,7 +23,7 @@ ConfigureLogging();
 
 
 builder.Services
-    .AddControllers()
+    .AddControllers()	
     .AddJsonOptions(
         options => options.JsonSerializerOptions.PropertyNamingPolicy = null);
 
