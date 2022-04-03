@@ -9,11 +9,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAbstraction", "DataAbst
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BooksRepositoryMongo", "BooksRepositoryMongo\BooksRepositoryMongo.csproj", "{19A282BA-2F47-433E-B7B8-DAD57124CC53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataValidationService", "DataValidationService\DataValidationService.csproj", "{3688F6D8-0FDE-4AF4-9ECF-6C37C3023674}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataValidationService", "DataValidationService\DataValidationService.csproj", "{3688F6D8-0FDE-4AF4-9ECF-6C37C3023674}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookObjectsGenerator", "BookObjectsGenerator\BookObjectsGenerator.csproj", "{9EE53FC8-6C63-4942-B2E2-8AB713C49960}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookObjectsGenerator", "BookObjectsGenerator\BookObjectsGenerator.csproj", "{9EE53FC8-6C63-4942-B2E2-8AB713C49960}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearchService", "ElasticSearchService\ElasticSearchService.csproj", "{A5B35BAE-C5B4-48DA-AF79-B5595C7DC91F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ElasticSearchService", "ElasticSearchService\ElasticSearchService.csproj", "{A5B35BAE-C5B4-48DA-AF79-B5595C7DC91F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

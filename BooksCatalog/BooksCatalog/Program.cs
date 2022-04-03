@@ -1,9 +1,14 @@
+using BooksCatalog.ConsulService;
 using BooksRepositoryMongo;
+using Consul;
 using DataAbstraction.Interfaces;
 using DataAbstraction.Models;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Serilog;
 using Serilog.Sinks.Elasticsearch;
+using System.Net.Mime;
 using System.Reflection;
+using System.Text.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -44,6 +49,18 @@ builder.Services.Configure<ElasticSearchConnection>(
 // elastic service
 builder.Services.AddSingleton<IElasticSearchService, ElasticSearchService.ElasticSearchService>();
 
+//consul
+builder.Services.AddSingleton<IHostedService, ConsulHostedService>();
+builder.Services.Configure<ConsulConfiguration>(builder.Configuration.GetSection("consulConfiguration"));
+builder.Services.AddSingleton<IConsulClient, ConsulClient>(p =>
+    new ConsulClient(consulConfig =>
+        {
+            var address = builder.Configuration["consulConfiguration:address"];
+            consulConfig.Address = new Uri(address);
+        }));
+builder.Services.AddHealthChecks();
+
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -58,6 +75,27 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+//consul
+app.MapHealthChecks("/healthz");
+app.UseHealthChecks("/healthz");
+app.MapHealthChecks("/healthcheck-details",
+	new HealthCheckOptions
+	{
+		ResponseWriter = async (context, report) =>
+		{
+			var result = JsonSerializer.Serialize(
+				new
+				{
+					status = report.Status.ToString(),
+					monitors = report.Entries.Select(e => new { key = e.Key, value = Enum.GetName(typeof(HealthStatus), e.Value.Status) })
+				});
+			context.Response.ContentType = MediaTypeNames.Application.Json;
+			await context.Response.WriteAsync(result);
+		}
+	}
+);
+
 
 Log.Warning($"Program started {Assembly.GetExecutingAssembly().GetName().Name}");
 app.Run();
