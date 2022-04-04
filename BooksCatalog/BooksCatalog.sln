@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataValidationService", "Da
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BookObjectsGenerator", "BookObjectsGenerator\BookObjectsGenerator.csproj", "{9EE53FC8-6C63-4942-B2E2-8AB713C49960}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ElasticSearchService", "ElasticSearchService\ElasticSearchService.csproj", "{A5B35BAE-C5B4-48DA-AF79-B5595C7DC91F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{9EE53FC8-6C63-4942-B2E2-8AB713C49960}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9EE53FC8-6C63-4942-B2E2-8AB713C49960}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9EE53FC8-6C63-4942-B2E2-8AB713C49960}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5B35BAE-C5B4-48DA-AF79-B5595C7DC91F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5B35BAE-C5B4-48DA-AF79-B5595C7DC91F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5B35BAE-C5B4-48DA-AF79-B5595C7DC91F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5B35BAE-C5B4-48DA-AF79-B5595C7DC91F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
