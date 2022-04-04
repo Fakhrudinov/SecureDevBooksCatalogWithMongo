@@ -7,7 +7,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="10.4.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.15.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BookObjectsGenerator\BookObjectsGenerator.csproj" />
+    <ProjectReference Include="..\BooksRepositoryMongo\BooksRepositoryMongo.csproj" />
+    <ProjectReference Include="..\DataAbstraction\DataAbstraction.csproj" />
+    <ProjectReference Include="..\DataValidationService\DataValidationService.csproj" />
   </ItemGroup>
 
 </Project>
