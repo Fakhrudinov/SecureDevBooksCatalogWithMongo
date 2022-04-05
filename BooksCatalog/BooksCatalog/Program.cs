@@ -59,6 +59,13 @@ builder.Services.AddSingleton<IConsulClient, ConsulClient>(p =>
             consulConfig.Address = new Uri(address);
         }));
 builder.Services.AddHealthChecks();
+//consul KeyValue store == without cancellation token
+builder.Services.AddSingleton <Func<IConsulClient>> (p => () => 
+	new ConsulClient(consulConfig =>
+        {
+            var address = builder.Configuration["consulConfiguration:address"];
+            consulConfig.Address = new Uri(address);
+        }));
 
 
 var app = builder.Build();
