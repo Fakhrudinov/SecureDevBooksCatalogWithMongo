@@ -38,9 +38,18 @@ namespace BooksCatalog.ConsulService
                 Tags = new[] { "Book", "Catalog" },
                 Check = new AgentServiceCheck()
                 {
+                    //HTTP = $"https://localhost:44313/api/health/status",
+                    //Notes = "Runs a HTTP API check at /health/status",
+
                     HTTP = $"https://localhost:44313/healthz",
+                    Notes = "Runs built-in health check feature",
+
+                    //TCP = "localhost:44313",
+                    //Notes = "Runs a TCP check on port 44313",
+
                     Timeout = TimeSpan.FromSeconds(2),
-                    Interval = TimeSpan.FromSeconds(10)
+                    Interval = TimeSpan.FromSeconds(10),
+                    DeregisterCriticalServiceAfter = TimeSpan.FromSeconds(10)
                 }
             };
 
